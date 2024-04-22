@@ -326,6 +326,33 @@ Copyright (C) 2017
       </div>
     </div>
 
+    <div class="row box" ng-show="section == 'dwellerlist'">
+      <div class="col-sm-12 vault_info">
+        <div class="scrollable-table">
+          <table>
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Level</th>
+              <th>Sex</th>
+              <th>Weapon</th>
+              <th>Outfit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="d in save.dwellers.dwellers">
+              <td>{{ d.name }} {{ d.lastName }}</td>
+              <td>{{ d.experience.currentLevel }}</td>
+              <td>{{ d.gender == 1 ? 'Female' : (d.gender == 2 ? 'Male' : 'Unknown') }}</td>
+              <td>{{ dwellerweaponlist[d.equipedWeapon.id] == null ? ">>> " + d.equipedWeapon.id + " <<<": dwellerweaponlist[d.equipedWeapon.id]}}</td>
+              <td>{{ dwelleroutfitslist[d.equipedOutfit.id] == null ? ">>> " + d.equipedOutfit.id + " <<<" : dwelleroutfitslist[d.equipedOutfit.id]}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <div class="row box" ng-show="section == 'Others'">
       <div class="Others list-group col-sm-4">
         <a ng-repeat="o in save.dwellers.actors" ng-click="editOthers(o);" ng-class="{ 'active': other == o }"
@@ -514,6 +541,8 @@ Copyright (C) 2017
         ng-class="{ 'active': section == 'vault' }">Vault {{ save.vault.VaultName }}<small></small></a>
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'dwellers'"
         ng-class="{ 'active': section == 'dwellers' }">Dwellers <small>({{ save.dwellers.dwellers.length }})</small></a>
+      <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'dwellerlist'"
+         ng-class="{ 'active': section == 'dwellerlist' }">Dwellers <small>({{ save.dwellers.dwellers.length }})</small></a>
       <a href="" ng-hide="!save.dwellers" class="tab" ng-click="section = 'Others'"
         ng-class="{ 'active': section == 'Others' }">Others <small>({{ save.dwellers.actors.length }})</small></a>
       <a href="" ng-hide="!wastelandTeams.length" class="tab" ng-click="section = 'wastelandD'"
@@ -580,6 +609,7 @@ Copyright (C) 2017
   <script src="js/FileSaver.js"></script>
   <script src="js/shelter.js"></script>
   <script src="js/jscolor.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-sanitize.min.js"></script>
 </body>
 
 
