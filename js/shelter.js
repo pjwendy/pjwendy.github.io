@@ -391,6 +391,22 @@ app.controller('dwellerController', function ($scope) {
     $scope.dweller = {};
   };
 
+  $scope.deleteDweller = function (dweller) {
+    var lengthOld = $scope.save.dwellers.dwellers.length
+    var indexToDelete = -1
+    for( var i = (lengthOld - 1); i >= 0; i-- )
+    {
+      var dweller = $scope.save.dwellers.dwellers[i];
+      if( dweller.serializeId == $scope.dweller.serializeId )
+      {
+        indexToDelete = i
+        break
+      }
+    }
+
+    $scope.save.dwellers.dwellers.splice(indexToDelete, 1);
+  };
+
   $scope.editTeam = function (team) {
     $scope.team = team;
   };
