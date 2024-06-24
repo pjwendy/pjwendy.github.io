@@ -429,6 +429,17 @@ app.controller('dwellerController', function ($scope) {
     alert("All themes unlocked!");
   };
 
+  $scope.lvl50maxhealth = function () {
+    var sum2 = Object.keys($scope.save.dwellers.dwellers).length;
+    for (i = 0; i < sum2; i++) {
+      if ($scope.save.dwellers.dwellers[i].experience.currentLevel == 50) {
+        $scope.save.dwellers.dwellers[i].health.maxHealth = 644;
+        $scope.save.dwellers.dwellers[i].health.healthValue = $scope.save.dwellers.dwellers[i].health.maxHealth;
+      }
+    }
+    alert("Maxed All level 50 Dwellers Health");
+  };
+
   $scope.colortofos = colortofos;
 
   $scope.unlockrooms = function () {
